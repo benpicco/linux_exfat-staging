@@ -70,7 +70,7 @@ s32 nls_dosname_cmp(struct super_block *sb, u8 *a, u8 *b)
 
 s32 nls_uniname_cmp(struct super_block *sb, u16 *a, u16 *b)
 {
-	s32 i;
+	int i;
 
 	for (i = 0; i < MAX_NAME_LENGTH; i++, a++, b++) {
 		if (nls_upper(sb, *a) != nls_upper(sb, *b))
@@ -83,7 +83,7 @@ s32 nls_uniname_cmp(struct super_block *sb, u16 *a, u16 *b)
 
 void nls_uniname_to_dosname(struct super_block *sb, DOS_NAME_T *p_dosname, UNI_NAME_T *p_uniname, s32 *p_lossy)
 {
-	s32 i, j, len, lossy = FALSE;
+	int i, j, len, lossy = FALSE;
 	u8 buf[MAX_CHARSET_SIZE];
 	u8 lower = 0, upper = 0;
 	u8 *dosname = p_dosname->name;
@@ -191,7 +191,7 @@ void nls_uniname_to_dosname(struct super_block *sb, DOS_NAME_T *p_dosname, UNI_N
 
 void nls_dosname_to_uniname(struct super_block *sb, UNI_NAME_T *p_uniname, DOS_NAME_T *p_dosname)
 {
-	s32 i = 0, j, n = 0;
+	int i = 0, j, n = 0;
 	u8 buf[DOS_NAME_LENGTH+2];
 	u8 *dosname = p_dosname->name;
 	u16 *uniname = p_uniname->name;
@@ -241,7 +241,7 @@ void nls_dosname_to_uniname(struct super_block *sb, UNI_NAME_T *p_uniname, DOS_N
 
 void nls_uniname_to_cstring(struct super_block *sb, u8 *p_cstring, UNI_NAME_T *p_uniname)
 {
-	s32 i, j, len;
+	int i, j, len;
 	u8 buf[MAX_CHARSET_SIZE];
 	u16 *uniname = p_uniname->name;
 	struct nls_table *nls = EXFAT_SB(sb)->nls_io;
@@ -268,7 +268,7 @@ void nls_uniname_to_cstring(struct super_block *sb, u8 *p_cstring, UNI_NAME_T *p
 
 void nls_cstring_to_uniname(struct super_block *sb, UNI_NAME_T *p_uniname, u8 *p_cstring, s32 *p_lossy)
 {
-	s32 i, j, lossy = FALSE;
+	int i, j, lossy = FALSE;
 	u8 *end_of_name;
 	u8 upname[MAX_NAME_LENGTH * 2];
 	u16 *uniname = p_uniname->name;

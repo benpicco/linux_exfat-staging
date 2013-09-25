@@ -21,7 +21,7 @@
 #define BITMAP_LOC(v)           ((v) >> 3)
 #define BITMAP_SHIFT(v)         ((v) & 0x07)
 
-s32 exfat_bitmap_test(u8 *bitmap, s32 i)
+s32 exfat_bitmap_test(u8 *bitmap, int i)
 {
 	u8 data;
 
@@ -31,12 +31,12 @@ s32 exfat_bitmap_test(u8 *bitmap, s32 i)
 	return 0;
 }
 
-void exfat_bitmap_set(u8 *bitmap, s32 i)
+void exfat_bitmap_set(u8 *bitmap, int i)
 {
 	bitmap[BITMAP_LOC(i)] |= (0x01 << BITMAP_SHIFT(i));
 }
 
-void exfat_bitmap_clear(u8 *bitmap, s32 i)
+void exfat_bitmap_clear(u8 *bitmap, int i)
 {
 	bitmap[BITMAP_LOC(i)] &= ~(0x01 << BITMAP_SHIFT(i));
 }
