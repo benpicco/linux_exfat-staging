@@ -73,8 +73,10 @@ int FsMountVol(struct super_block *sb)
 			break;
 	}
 
-	if (drv >= MAX_DRIVE)
+	if (drv >= MAX_DRIVE) {
+		printk(KERN_ERR "[EXFAT] Max number of mount points exceeded\n");
 		return FFS_ERROR;
+	}
 
 	sm_P(&(fs_struct[drv].v_sem));
 
